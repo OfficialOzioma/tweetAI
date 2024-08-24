@@ -24,7 +24,7 @@ export default {
       subscribeToUpdates();
 
       //   Fetch the count every hour
-      setInterval(fetchInitialCount, 3600);
+      setInterval(fetchInitialCount, 3600000);
     });
 
     /**
