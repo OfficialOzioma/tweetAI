@@ -58,6 +58,11 @@ class GenerateAutobots extends Command
             for ($i = 0; $i < 500; $i++) {
                 $autobotsEmail = $faker->unique()->safeEmail;
 
+                // Check if email already exist in the array to avoid duplicates
+                while (in_array($autobotsEmail, array_column($autobots, 'email'))) {
+                    $autobotsEmail = $faker->unique()->safeEmail;
+                }
+
                 // check database if the email already exists in the table
                 while (User::where('email', $autobotsEmail)->exists()) {
                     $autobotsEmail = $faker->unique()->safeEmail;
