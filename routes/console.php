@@ -9,4 +9,5 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote')->hourly();
 
-Schedule::job(new GenerateAutobots())->hourly();
+// Schedule::job(new GenerateAutobots())->everyMinute();
+Schedule::command('autobots:cron')->everyMinute();

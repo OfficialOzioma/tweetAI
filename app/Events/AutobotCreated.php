@@ -29,11 +29,6 @@ class AutobotCreated
      */
     public function broadcastOn()
     {
-        // return [
-        // //     new PrivateChannel('channel-name'),
-        // new Channel('autobots')
-        // ];
-
         return new Channel('autobots');
     }
 }

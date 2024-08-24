@@ -9,7 +9,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/autobot-count', function () {
+Route::get('/autobots/count', function () {
     return response()->json(['count' => User::count()]);
 });
 
