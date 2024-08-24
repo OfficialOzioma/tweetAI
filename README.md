@@ -22,7 +22,7 @@ This project is a real-time Autobot counter using Laravel 11 and Vue.js. It disp
 1. Clone the repository:
 
 ```bash
-git clone <git@github.com>:OfficialOzioma/tweetAI.git
+git clone git@github.com:OfficialOzioma/tweetAI.git
 ```
 
 2. Install PHP dependencies:
@@ -75,22 +75,35 @@ npm run dev
 
 ## Background Process
 
-The background process that creates Autobots should be set up as a separate Laravel command or job. Ensure it dispatches the `AutobotCreated` event after creating new Autobots.
+The background process that creates Autobots should be set up as a separate Laravel command or job. Ensure it dispatches the `AutobotCreated`event after creating new Autobots.
+
+1. Run Scheduler Command
+
+```bash
+php artisan schedule:run
+```
+
+2. Cron Job Setup on Server
+ *If you're using Ubuntu Server, crontab is likely already installed. Run the command below to add a new entry for the cron job.*
+
+ ```bash
+ crontab -e
+ ```
+
+ ```bash
+ * * * * * cd /path-to-your-project & php artisan schedule:run >> /dev/null 2>&1
+ ```
+
+ *Replace `/path-to-your-laravel-project` with the actual path to your Laravel project.*
+
+ For Windows users, you'll need to use Task Scheduler to create a task that runs `php artisan schedule:run` every hour.
 
 ## API Documentation
 
-For detailed information about the API endpoints used in this project, please refer to our [API Documentation](https://api-docs.example.com/autobot-counter).
+For detailed information about the API endpoints used in this project, please refer to our [API Documentation](https://documenter.getpostman.com/view/12234489/2sAXjF8EYc).
 
 ## Troubleshooting
 
 - If real-time updates are not working, check your WebSocket configuration in the `.env` file and ensure the broadcast driver is set correctly.
 - Make sure the `AutobotCreated` event is being dispatched correctly in your background process.
 - Check the browser console for any JavaScript errors related to Laravel Echo or Vue.js.
-
-## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.

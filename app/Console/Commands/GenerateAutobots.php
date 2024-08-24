@@ -56,9 +56,16 @@ class GenerateAutobots extends Command
 
             // Prepare Autobots
             for ($i = 0; $i < 500; $i++) {
+                $autobotsEmail = $faker->unique()->safeEmail;
+
+                // check database if the email already exists in the table
+                while (User::where('email', $autobotsEmail)->exists()) {
+                    $autobotsEmail = $faker->unique()->safeEmail;
+                }
+
                 $autobots[] = [
                     'name' => $faker->unique()->name,
-                    'email' => $faker->unique()->safeEmail,
+                    'email' => $autobotsEmail,
                     'password' => bcrypt('password'),
                     'created_at' => $now,
                     'updated_at' => $now,
