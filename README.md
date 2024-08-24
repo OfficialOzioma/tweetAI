@@ -55,7 +55,7 @@ php artisan key:generate
 php artisan migrate
 ```
 
-7. Configure Pusher or your preferred WebSocket provider in the `.env` file.
+1. Configure Pusher details in the `.env` file.
 
 ### Running the Application
 
